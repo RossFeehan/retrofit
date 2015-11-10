@@ -4,34 +4,38 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+import com.ross.feehan.retrofitexample.Interfaces.GetTubeServiceViewInterface;
+import com.ross.feehan.retrofitexample.Objects.Tube;
+
+import java.util.List;
+
+public class MainActivity extends Activity implements GetTubeServiceViewInterface{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GetTubeStatus getTubeStatus = new GetTubeStatus();
+
+        getTubeStatus.getTubeStatus(this);
+    }
+
+    //GetTubeServiceViewInterface INTERFACE METHODS
+    @Override
+    public void noInternetConnection() {
+        Toast.makeText(this, "Sorry, no internet connection", Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void somethingWentWrong(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void displayTubeLineStates(List<Tube> tubeStates) {
+        Toast.makeText(this, "Display tube states", Toast.LENGTH_LONG).show();
     }
 }

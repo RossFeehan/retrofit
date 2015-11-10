@@ -3,6 +3,8 @@ package com.ross.feehan.retrofitexample.Objects;
 import com.google.gson.annotations.SerializedName;
 import com.ross.feehan.retrofitexample.Objects.TubeLineStatus;
 
+import java.util.List;
+
 /**
  * Created by Ross Feehan on 10/11/2015.
  * Copyright Ross Feehan
@@ -10,10 +12,10 @@ import com.ross.feehan.retrofitexample.Objects.TubeLineStatus;
 public class Tube {
 
     @SerializedName("name") private String tubeName;
-    private TubeLineStatus tubeStatus;
+    @SerializedName("lineStatuses") private List<TubeLineStatus> tubeStatus;
 
     //CONSTRUCTOR
-    public Tube(String tubeName, TubeLineStatus status){
+    public Tube(String tubeName, List<TubeLineStatus> status){
         setTubeName(tubeName);
         setTubeStatus(status);
     }
@@ -23,7 +25,7 @@ public class Tube {
         this.tubeName = tubeName;
     }
 
-    public void setTubeStatus(TubeLineStatus tubeStatus) {
+    public void setTubeStatus(List<TubeLineStatus> tubeStatus) {
         this.tubeStatus = tubeStatus;
     }
 
@@ -32,7 +34,8 @@ public class Tube {
         return tubeName;
     }
 
-    public TubeLineStatus getTubeStatus() {
+    public List<TubeLineStatus> getTubeStatus() {
         return tubeStatus;
     }
+
 }

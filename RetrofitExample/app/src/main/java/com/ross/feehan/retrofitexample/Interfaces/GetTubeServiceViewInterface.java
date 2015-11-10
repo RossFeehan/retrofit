@@ -12,7 +12,7 @@ public interface GetTubeServiceViewInterface {
 
     public void noInternetConnection();
 
-    public void somethingWentWrong();
+    public void somethingWentWrong(String message);
 
     public void displayTubeLineStates(List<Tube> tubeStates);
 }
