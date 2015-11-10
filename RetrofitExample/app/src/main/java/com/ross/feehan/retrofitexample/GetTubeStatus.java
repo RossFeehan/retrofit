@@ -22,6 +22,7 @@ public class GetTubeStatus implements GetTubeStatusInterface {
     private static final String API_URL = "https://api.tfl.gov.uk";
     private TflApiInterface tflApiInterface;
     private Callback retrofitCallback;
+    private static final String NETWORKERROR = "NETWORK";
 
     @Override
     public void getTubeStatus(GetTubeServiceViewInterface tubeViewListener) {
@@ -66,8 +67,14 @@ public class GetTubeStatus implements GetTubeStatusInterface {
 
             @Override
             public void failure(RetrofitError error) {
-                //Notify the calling class that there was an error
-                tubeViewListener.somethingWentWrong(error.getMessage().toString());
+               //Notify the calling class if there was a networking error
+                if(error.getKind().equals(NETWORKERROR)){
+                    tubeViewListener.noInternetConnection();
+                }
+                else{
+                    //Notify the calling class that there was an error
+                    tubeViewListener.somethingWentWrong(error.getMessage().toString());
+                }
             }
         };
         return callback;
