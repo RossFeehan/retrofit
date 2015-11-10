@@ -1,6 +1,6 @@
-package com.ross.feehan.retrofitexample;
+package com.ross.feehan.retrofitexample.Interfaces;
 
-import java.util.List;
+import com.ross.feehan.retrofitexample.Objects.Tube;
 
 import retrofit.Callback;
 import retrofit.http.GET;

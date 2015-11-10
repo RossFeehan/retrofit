@@ -1,4 +1,4 @@
-package com.ross.feehan.retrofitexample;
+package com.ross.feehan.retrofitexample.Objects;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,6 +1,7 @@
-package com.ross.feehan.retrofitexample;
+package com.ross.feehan.retrofitexample.Objects;
 
 import com.google.gson.annotations.SerializedName;
+import com.ross.feehan.retrofitexample.Objects.TubeLineStatus;
 
 /**
  * Created by Ross Feehan on 10/11/2015.
