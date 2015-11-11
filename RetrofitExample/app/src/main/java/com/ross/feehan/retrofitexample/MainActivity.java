@@ -2,24 +2,31 @@ package com.ross.feehan.retrofitexample;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.ross.feehan.retrofitexample.Interfaces.GetTubeServiceViewInterface;
-import com.ross.feehan.retrofitexample.Objects.Tube;
+import com.ross.feehan.retrofitexample.Interfaces.GetTubeLineServiceViewInterface;
+import com.ross.feehan.retrofitexample.Objects.TubeLines;
 
 import java.util.List;
 
-public class MainActivity extends Activity implements GetTubeServiceViewInterface{
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
+public class MainActivity extends Activity implements GetTubeLineServiceViewInterface {
+
+    @Bind(R.id.tubeRV) RecyclerView tubeLinesRV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetTubeStatus getTubeStatus = new GetTubeStatus();
+        //FOR BUTTERKNIFE
+        ButterKnife.bind(this);
 
+        GetTubeLineStatus getTubeStatus = new GetTubeLineStatus();
         getTubeStatus.getTubeStatus(this);
     }
 
@@ -35,7 +42,14 @@ public class MainActivity extends Activity implements GetTubeServiceViewInterfac
     }
 
     @Override
-    public void displayTubeLineStates(List<Tube> tubeStates) {
-        Toast.makeText(this, "Display tube states", Toast.LENGTH_LONG).show();
+    public void displayTubeLineStates(List<TubeLines> tubeStates) {
+        //Creating the layout of the recycler view (linearlayout creates a list view)
+        LinearLayoutManager recyclerViewLayoutManager = new LinearLayoutManager(this);
+        tubeLinesRV.setLayoutManager(recyclerViewLayoutManager);
+
+        //Creating the adapter for the recycler view, loaded with the tube lines
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(tubeStates);
+        tubeLinesRV.setAdapter(recyclerViewAdapter);
+
     }
 }

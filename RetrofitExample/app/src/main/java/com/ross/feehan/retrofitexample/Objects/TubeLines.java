@@ -9,13 +9,13 @@ import java.util.List;
  * Created by Ross Feehan on 10/11/2015.
  * Copyright Ross Feehan
  */
-public class Tube {
+public class TubeLines {
 
     @SerializedName("name") private String tubeName;
     @SerializedName("lineStatuses") private List<TubeLineStatus> tubeStatus;
 
     //CONSTRUCTOR
-    public Tube(String tubeName, List<TubeLineStatus> status){
+    public TubeLines(String tubeName, List<TubeLineStatus> status){
         setTubeName(tubeName);
         setTubeStatus(status);
     }

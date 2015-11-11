@@ -1,6 +1,6 @@
 package com.ross.feehan.retrofitexample.Interfaces;
 
-import com.ross.feehan.retrofitexample.Objects.Tube;
+import com.ross.feehan.retrofitexample.Objects.TubeLines;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import retrofit.http.GET;
 public interface TflApiInterface {
 
     @GET("/line/mode/tube/status")
-    public void getTubeStatus(Callback<List<Tube>> callback);
+    public void getTubeLineStatus(Callback<List<TubeLines>> callback);
 
     //Usually you would use Callback<Type> callback
     //But in this case the json returned from the api starts with a json array

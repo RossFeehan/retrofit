@@ -1,9 +1,9 @@
 package com.ross.feehan.retrofitexample;
 
-import com.ross.feehan.retrofitexample.Interfaces.GetTubeServiceViewInterface;
-import com.ross.feehan.retrofitexample.Interfaces.GetTubeStatusInterface;
+import com.ross.feehan.retrofitexample.Interfaces.GetTubeLineServiceViewInterface;
+import com.ross.feehan.retrofitexample.Interfaces.GetTubeLineStatusInterface;
 import com.ross.feehan.retrofitexample.Interfaces.TflApiInterface;
-import com.ross.feehan.retrofitexample.Objects.Tube;
+import com.ross.feehan.retrofitexample.Objects.TubeLines;
 
 import java.util.List;
 
@@ -16,22 +16,22 @@ import retrofit.client.Response;
  * Created by Ross Feehan on 10/11/2015.
  * Copyright Ross Feehan
  */
-public class GetTubeStatus implements GetTubeStatusInterface {
+public class GetTubeLineStatus implements GetTubeLineStatusInterface {
 
-    private GetTubeServiceViewInterface tubeViewListener;
+    private GetTubeLineServiceViewInterface tubeViewListener;
     private static final String API_URL = "https://api.tfl.gov.uk";
     private TflApiInterface tflApiInterface;
     private Callback retrofitCallback;
     private static final String NETWORKERROR = "NETWORK";
 
     @Override
-    public void getTubeStatus(GetTubeServiceViewInterface tubeViewListener) {
+    public void getTubeStatus(GetTubeLineServiceViewInterface tubeViewListener) {
         this.tubeViewListener = tubeViewListener;
 
         setupRetrofit();
 
         //Make the api call, we use a callback so the api call will be async
-        tflApiInterface.getTubeStatus(retrofitCallback);
+        tflApiInterface.getTubeLineStatus(retrofitCallback);
     }
 
     /*
@@ -61,7 +61,7 @@ public class GetTubeStatus implements GetTubeStatusInterface {
             @Override
             public void success(Object o, Response response) {
                 //Send the list of tube states back to the calling class
-                List<Tube> tubeStates = (List<Tube>) o;
+                List<TubeLines> tubeStates = (List<TubeLines>) o;
                 tubeViewListener.displayTubeLineStates(tubeStates);
             }
 
